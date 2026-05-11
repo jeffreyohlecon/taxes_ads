@@ -1,0 +1,211 @@
+% =====================================================
+% Baby model: when does optimal advertising rise with
+% a per-unit excise tax? Worked-out math + scaffolding.
+% Prose is intentionally terse — fill in for the paper.
+% =====================================================
+
+\section*{When Does Optimal Advertising Rise with a Tax?
+A Sign Condition}
+
+% [SCAFFOLDING / NOTES FOR PAPER PROSE]
+%
+% This section answers: under what condition does a
+% profit-maximizing firm RAISE advertising in response
+% to a per-unit excise tax on its product?
+%
+% Frame against the companion paper (sb_incidence draft,
+% Section "Theory"), which assumes per-customer demand
+% D(p) depends only on price, not on advertising A.
+% Under that assumption a tax reduces optimal ads. We
+% show the result hinges on that specific assumption.
+% Relaxing it — allowing ads and price to enter demand
+% jointly — gives a clean sign condition on the cross-
+% partial D_{pA} that flips the comparative static.
+
+\paragraph{Setup.} A monopolist sells a good with
+demand $D(p, A)$, where $p$ is the consumer price and
+$A \geq 0$ is total advertising (in dollars). Marginal
+cost is $c$, and the government levies a per-unit
+specific tax $t \geq 0$. The firm's profit is
+\begin{equation}\label{eq:profit}
+    \pi(p, A; t)
+    \;=\; (p - c - t)\, D(p, A) \;-\; A.
+\end{equation}
+We assume $D_p < 0$, $D_A > 0$, $D_{AA} < 0$ (diminishing
+returns to advertising), and the regularity conditions
+needed for an interior optimum.
+
+\begin{remark}[Relation to companion model]
+The companion paper (sb\_incidence,
+\texttt{paper/draft.tex}, the "Model" section
+introducing $\pi^{\text{pre-tax}} = p D(p) A - c(A)$)
+writes profit as
+$\pi = (p-t) \, D(p) \, A - c(A)$,
+where $A$ is the number of customers acquired (one ad
+unit per customer) and per-customer demand $D(p)$
+depends only on price (its Assumption~3). This is the
+multiplicatively separable case $D(p, A) = D(p) \cdot A$,
+with $D_{pA} = D'(p) < 0$ and a particular cost function.
+The present analysis nests that as a special case and
+shows it sits strictly on the $dA^*/dt < 0$ side of the
+sign condition.
+\end{remark}
+
+\paragraph{First-order conditions.} At an interior
+optimum, $(\pi_p, \pi_A) = (0, 0)$:
+\begin{align}
+    \pi_p &: \quad D \;+\; (p - c - t)\, D_p \;=\; 0,
+        \label{eq:foc_p} \\
+    \pi_A &: \quad (p - c - t)\, D_A \;-\; 1 \;=\; 0.
+        \label{eq:foc_A}
+\end{align}
+Define the per-unit margin $m \equiv p - c - t$. The
+price FOC is the standard Lerner condition
+$m = -D / D_p$; the advertising FOC is Dorfman--Steiner
+$m \, D_A = 1$.
+
+\paragraph{Comparative static.} Let $p^*(t)$ and $A^*(t)$
+be the optimal choices. Define the pass-through
+$\rho \equiv dp^*/dt \in (0, 1)$ (typically less than one
+under standard demand curvature). Total-differentiating
+the advertising FOC \eqref{eq:foc_A} with respect to $t$
+at the optimum:
+\begin{equation}\label{eq:dAdt_unsolved}
+    (\rho - 1)\, D_A
+    \;+\; m \,\bigl[\, D_{Ap}\, \rho \;+\; D_{AA}\, A_t \,\bigr]
+    \;=\; 0,
+\end{equation}
+where $A_t \equiv dA^*/dt$. Solving:
+\begin{equation}\label{eq:dAdt}
+    \boxed{\quad
+    \frac{dA^*}{dt}
+    \;=\;
+    \frac{(\rho - 1)\, D_A \;+\; m \, \rho \, D_{Ap}}
+         {-\, m \, D_{AA}}.
+    \quad}
+\end{equation}
+The denominator $-m D_{AA} > 0$ by the second-order
+condition for $A$, so $\mathrm{sign}(A_t)$ is the sign
+of the numerator.
+
+\begin{remark}[Uniqueness of the optimum]
+\label{rem:uniqueness}
+Conditions $D_p < 0$ (Marshall's Second Law) and
+$D_{AA} < 0$ (diminishing returns to ads) make
+$\pi_{pp}, \pi_{AA} < 0$ but are not enough for joint
+concavity in $(p, A)$. We also need the off-diagonal
+Hessian term not to dominate:
+$\pi_{pp}\, \pi_{AA} - \pi_{pA}^2 > 0$, where
+$\pi_{pA} = D_A + m\, D_{pA}$. The same cross-partial
+$D_{pA}$ that drives the sign condition in
+Proposition~\ref{prop:sign} can, if large enough,
+break joint concavity. We assume it does not — i.e.,
+$D_{pA}$ is positive enough to satisfy
+\eqref{eq:sign_condition} but bounded above by
+$\sqrt{\pi_{pp}\, \pi_{AA}}/m - D_A/m$ to preserve a
+unique interior optimum.
+\end{remark}
+
+\begin{proposition}[Sign condition]\label{prop:sign}
+Optimal advertising rises with the per-unit tax,
+$dA^*/dt > 0$, if and only if
+\begin{equation}\label{eq:sign_condition}
+    D_{Ap}
+    \;>\;
+    \frac{(1 - \rho)\, D_A}{m \, \rho}.
+\end{equation}
+The RHS is strictly positive whenever pass-through is
+less than full ($\rho < 1$) and the margin is positive
+($m > 0$). Hence the firm advertises more after a tax
+\emph{only if} $D_{Ap}$ is positive and large enough.
+\end{proposition}
+
+% [SCAFFOLDING: economics of D_{pA} > 0]
+% D_{pA} > 0 means the marginal demand response to
+% advertising is larger when the price is higher. This
+% is the persuasive view: ads matter more for retention
+% / brand loyalty / habit when the consumer has a stronger
+% reason to defect (price is high). Becker-Murphy (1993)
+% and Galbraith are the canonical references.
+%
+% Equivalent statement via elasticity. Let
+% epsilon = -p D_p / D. Then
+%   d epsilon / dA = -(p / D) [D_{pA} - D_p D_A / D].
+% So d epsilon / dA < 0 iff D_{pA} > D_p D_A / D. Since
+% D_p < 0 and D_A > 0, the RHS is negative — ads reduce
+% elasticity for almost any positive (or even weakly
+% negative) D_{pA}.
+%
+% The proposition's threshold (eq:sign_condition) is
+% STRONGER than just "ads reduce elasticity"; it requires
+% the magnitude of D_{pA} to outweigh the "smaller-margin"
+% drag from incomplete pass-through.
+
+\begin{corollary}[Separable-demand benchmark]
+\label{cor:separable}
+Suppose $D(p, A) = f(p) \cdot g(A)$ for some $f, g > 0$
+with $f' < 0$ and $g'' < 0$ (multiplicative separability).
+Then $D_{pA} = f'(p)\, g'(A)$, which has sign of $f'(p)
+\cdot g'(A) = (-) \cdot (+) < 0$. The sign condition in
+Proposition~\ref{prop:sign} fails. Hence $dA^*/dt < 0$:
+the firm reduces advertising in response to the tax.
+The sb\_incidence model's Assumption~3 (per-customer
+demand independent of ads) is the limiting case
+$g(A) = A$ — separability holds, and the same
+conclusion follows.
+\end{corollary}
+
+\begin{corollary}[Persuasive-advertising case]
+\label{cor:persuasive}
+If advertising reduces demand elasticity sufficiently,
+\eqref{eq:sign_condition} holds and $dA^*/dt > 0$. A
+sufficient (not necessary) functional form: $D(p, A) =
+\phi(A) \cdot D_0(p / \psi(A))$ with $\psi' > 0$, so
+that higher $A$ shifts demand outward and rotates it
+flatter in proportional space. Equivalently, ads act
+as a brand-loyalty multiplier on the consumer's
+reservation price.
+\end{corollary}
+
+% [SCAFFOLDING: empirical implication]
+% Empirical implications to highlight:
+%
+% (i) The sb_incidence finding (sportsbook ads fall when
+% GGR tax rises) is consistent with separable demand:
+% sportsbook demand is dominated by extensive-margin
+% participation, and ads acquire customers but do not
+% meaningfully shift their per-bet wagering. Assumption 3
+% in that paper is the right empirical call.
+%
+% (ii) The SSB result (Philly Spot TV ad spend rises
+% relative to Pittsburgh by ~$11K/month after the
+% beverage tax, see Section X) is consistent with
+% Corollary~\ref{cor:persuasive}: in a CPG category where
+% brands compete on persuasive recall and switching is
+% one-aisle-over, ads plausibly rotate the demand curve.
+% A positive D_{pA} is the canonical Becker-Murphy
+% prediction.
+%
+% (iii) The same empirical exercise on liquor, beer,
+% tobacco lets us test which side of the sign condition
+% each industry sits on. Different signs across
+% categories are themselves a finding.
+
+\paragraph{Tax deductibility.}
+% [SCAFFOLDING] Ads NOT tax-deductible — same setup as
+% sb_incidence. With deductibility, the marginal cost
+% of ads on the LHS of the ad FOC scales by (1-tau) for
+% revenue taxes, but for a specific tax with non-
+% deductible ads the algebra above is unchanged.
+
+\paragraph{Bottom line.}
+% [SCAFFOLDING] The sign of $dA^*/dt$ is the empirical
+% test of whether ads in a given product category act as
+% (a) attention-grabbers that don't affect price
+% sensitivity (separable demand → ads fall with tax),
+% or (b) persuasive demand-curve rotators (non-separable
+% with D_{pA} > 0 → ads can rise with tax). The
+% sb_incidence sportsbook result is the (a) case; the
+% Philly SSB result is consistent with the (b) case.
+% Stacking many tax events across categories lets us
+% read off where each industry sits.

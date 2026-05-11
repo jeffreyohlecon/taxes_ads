@@ -1,0 +1,195 @@
+% Literature notes for the taxes_ads project.
+% Raw material for the paper, not paper prose.
+
+\section*{Related work}
+
+\subsection*{\citet{keller_guyt_grewal_soda_marketing_conduct}
+  --- Soda Taxes and Marketing Conduct, JMR 61(3), 2024}
+
+\paragraph{Question.} After a soda tax, do retailers change
+marketing conduct beyond price (promo frequency, promo depth,
+feature frequency), and does consumer sensitivity to those
+instruments change?
+
+\paragraph{Data.} Nielsen RMS scanner data (Kilts), UPC--store--week.
+Five treated localities (Philadelphia, Berkeley, Boulder,
+Oakland, San Francisco --- inferred from the paper's market
+list); 208 stores, 13{,}690 UPC--store pairs, 587 UPCs, 167
+brands. Sample window: vote date through one year post-tax,
+dropping the first three weeks post-introduction
+(``dust-settling'' convention; Dekimpe et al.\ 2008).
+UPC--store pairs kept only if consistently offered in both the
+treated and matched-control markets and with at most 25\% of
+weeks zero-sales. 96\% of taxed UPCs appear in both treated
+and control markets, covering $>$99\% of volume.
+
+\paragraph{Findings: conduct changes (treated vs.\ matched control).}
+\begin{itemize}
+  \item Promotion frequency: $-2\%$.
+  \item Promotion depth: $-12\%$.
+  \item Feature promotion frequency: $-14\%$.
+  \item Regular price increases consistent with prior pass-through
+        literature.
+  \item Net effect: non-price conduct changes worsen the tax's
+        negative sales effect rather than offsetting it.
+\end{itemize}
+
+\paragraph{Findings: effectiveness changes.}
+Post-tax, consumers become \emph{less} sensitive to regular price,
+feature promotions, and promo depth, but \emph{more} sensitive
+to promotion incidence. Conduct response and effectiveness move
+in opposite directions on the promotion-incidence margin
+(consumers respond more to promos, managers run fewer).
+
+\paragraph{Cross-store rigidity within market.}
+Average correlation across stores within a UPC--retailer--market
+of regular price (promo incidence, promo depth):
+$0.265\ (0.164,\ 0.310)$ pre-tax,
+$0.402\ (0.159,\ 0.348)$ post-tax. Some rigidity, but more
+local adaptation than DellaVigna and Gentzkow (2019) or
+Hitsch, Horta\c{c}su, and Lin (2021). Features are set at the DMA
+level and so are constant across stores within a
+UPC--retailer--week.
+
+\paragraph{Event panel (Table 1 of the paper).}
+A useful ready-made list of U.S.\ SSB tax events. Pass-through
+column lists rates reported in the cited studies.
+
+\begin{tabular}{lllrll}
+\toprule
+Locality & Vote & Implementation & Tax (\textcent/oz.) & Pass-through & Products \\
+\midrule
+Philadelphia & 2016-06-16 & 2017-01-01 & 1.5 &
+  103\% (Cawley et al.\ 2020); 90\% (Roberto et al.\ 2019);
+  97\% (Seiler, Tuchman, Yao 2021) &
+  Sweetened beverages incl.\ regular and diet soda \\
+Boulder & 2016-11-08 & 2017-07-01 & 2.0 &
+  53--154\% (Cawley et al.\ 2021) &
+  SSBs $\geq$ 5g caloric sweetener / 12 fl.\ oz. \\
+Oakland & 2016-11-08 & 2017-07-01 & 1.0 &
+  92\% (Falbe et al.\ 2020) &
+  SSBs $\geq$ 25 cal / 12 fl.\ oz. \\
+San Francisco & 2016-11-08 & 2018-01-01 & 1.0 &
+  100\% (Falbe et al.\ 2020) &
+  SSBs $>$ 25 cal / 12 fl.\ oz. \\
+Seattle & 2017-06-05 & 2018-01-01 & 1.75 &
+  90\% (Jones-Smith et al.\ 2020); 59\% (Powell and Leider 2020) &
+  Sweetened beverages $\geq$ 40 cal / 12 fl.\ oz. \\
+\bottomrule
+\end{tabular}
+
+Cook County / Chicago (2017 SSB tax, repealed) is not in this
+panel and has the bottled-water-is-treated wrinkle noted in
+\texttt{CLAUDE.md}.
+
+\paragraph{Relevance to \texttt{taxes\_ads}.}
+This paper is the closest precedent for ``does conduct beyond
+price respond to a category tax.'' Two contrasts:
+\begin{itemize}
+  \item They use retailer marketing conduct (in-store promo,
+        feature) measured at UPC--store--week. We measure
+        \emph{manufacturer} advertising conduct (Nielsen Ad
+        Intel Spot TV) at brand--DMA--month.
+  \item They find non-price conduct \emph{shrinks} post-tax in
+        the treated market. The analogous prediction for us is
+        that national advertisers cut Spot TV buys in the
+        treated DMA. The Philly extraction
+        (\texttt{experiments/philly\_soda\_tax/}) is the first
+        test of that.
+\end{itemize}
+
+\subsection*{\citet{hua_philly_beverage_ad_expenditures}
+  --- Philadelphia Beverage Tax's Impact on Beverage Ad
+  Expenditures and Number of Ads Purchased, AJPM, 2024}
+
+\paragraph{Question.} Did beverage ad expenditures and number
+of ads purchased change in Philadelphia versus Baltimore after
+the Jan 1, 2017 Philadelphia beverage excise tax?
+
+\paragraph{Data and design.} Monthly beverage ad expenditures
+and ad counts by brand, Jan 2016 -- Dec 2019, coded as taxed
+vs.\ not taxed (analyzed 2023). Controlled interrupted time
+series on segmented linear regressions; outcomes are quarterly
+taxed-beverage ad expenditures and number of ads, aggregated
+and stratified by internet, spot TV, and local radio.
+
+\paragraph{Findings.}
+\begin{itemize}
+  \item No significant differences in taxed-beverage ad
+        expenditures between Philadelphia and Baltimore on
+        pre-trend, at implementation, or post-trend.
+  \item $0.13$ fewer quarterly taxed ads per 100 households in
+        Philadelphia vs.\ Baltimore at baseline (95\% CI:
+        $-0.25, -0.003$).
+  \item Internet: $0.42$ fewer quarterly taxed ads per 100
+        households in Philadelphia immediately post-tax (95\%
+        CI: $-0.77, -0.06$).
+  \item Spot TV: share of taxed-beverage ads was \emph{higher}
+        in Philadelphia at baseline by 28.0 pp (95\% CI:
+        $1.9, 54.1$).
+\end{itemize}
+
+\paragraph{Authors' conclusion (verbatim).}
+``This study found little evidence of changes in mass media
+advertising on the examined platforms between 2016 and 2019
+due to the Philadelphia beverage tax.''
+
+\paragraph{Relevance to \texttt{taxes\_ads}.}
+\begin{itemize}
+  \item Closest direct precedent: same event (Philly 2017),
+        same outcome class (beverage advertising), Baltimore
+        as the comparison DMA --- the user's own short list
+        for our extraction includes Baltimore.
+  \item Their null is a meaningful prior. If the AJPM result
+        is right, the Spot TV margin we are extracting should
+        also show a null in Philly. Our extraction is broader
+        (national panel, all parents, multiple SSB taxes
+        eventually), so even if Philly alone is null, pooled
+        evidence may move.
+  \item Methodological contrast: segmented ITS with one
+        comparison city vs.\ our stacked DiD with multiple
+        events and a synthetic / multi-DMA control. Different
+        identification, different power.
+  \item Spot TV baseline difference (Philly higher by 28 pp in
+        taxed-beverage share) is worth replicating from the
+        Ad Intel panel before running the event study; large
+        baseline gaps cast doubt on the parallel-trends
+        assumption.
+\end{itemize}
+
+\subsection*{\citet{dubois_griffith_oconnell_junk_food_ads}
+  --- The Effects of Banning Advertising in Junk Food Markets,
+  ReStud 85(1), 2018}
+
+\paragraph{Question.} If advertising of junk food is banned,
+does diet quality improve? Answer depends on how advertising
+shifts demand and how firms reprice in response.
+
+\paragraph{Setting and data.} U.K.\ potato chips market.
+Consumer-level exposure to TV adverts merged with household
+purchase data. Demand allows advertising to shift the weight
+on product healthiness, tilt demand curves, generate dynamics,
+and spill over across brands.
+
+\paragraph{Findings.} A ban's health benefit is \emph{partially
+offset} on two margins: (i) firms cut prices in response to the
+demand shift, and (ii) consumers substitute toward other junk
+foods.
+
+\paragraph{Relevance to \texttt{taxes\_ads}.}
+\begin{itemize}
+  \item Direct evidence that firms reprice when their
+        advertising channel is shut down. The mirror prediction
+        for a tax: if the tax suppresses advertising (our
+        outcome), prices may move in ways not captured by
+        pass-through studies that hold advertising fixed.
+  \item Cross-brand and cross-category substitution matter for
+        welfare. Our event panel only measures the
+        advertising-response margin; combining with scanner
+        pass-through and substitution estimates would close the
+        loop.
+  \item Methodologically distant (structural demand, ad-exposure
+        micro-data) but the question --- how does the
+        advertising margin interact with category policy --- is
+        the same.
+\end{itemize}

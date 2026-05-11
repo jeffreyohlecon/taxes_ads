@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Claude Code session state (per-checkout)
+.claude/
+
+# Outputs — regenerable from Mercury data + scripts.
+# Commented out by default; uncomment if outputs grow
+# large enough to bloat the repo.
+# experiments/*/extraction_outputs/
+# experiments/*/analysis_outputs/

@@ -1,0 +1,113 @@
+% Working notes on what we're doing and why.
+% Raw material, not paper prose. Update as the project moves.
+
+\section*{Process notes}
+
+\subsection*{Where we are (2026-05-11)}
+
+First extraction running on Mercury: Philadelphia DMA Spot
+TV occurrences, 2014--2018, filtered to SSB-relevant Nielsen
+PCC subcodes (F221/F222/F223 treated, F224 bottled water as
+within-firm placebo). Single-DMA pass; no geographic control
+yet. Pittsburgh + Baltimore + NYC + Boston + Cleveland are
+queued as the next extraction.
+
+\subsection*{What we want to learn from Philly}
+
+Does at least one major SSB advertiser visibly cut Spot TV
+buys in the Philadelphia DMA around the Jan 1, 2017 tax
+(with anticipation possibly starting after the June 16,
+2016 vote)? If the within-firm placebo (Coke vs.\ Dasani)
+doesn't move and SSB spend does, that's the cleanest cut
+this extraction can give. Geographic control comes in the
+second extraction.
+
+\subsection*{Reframing Keller, Guyt, Grewal (2024)}
+
+Their three ``marketing conduct'' findings (promo frequency
+$-2\%$, promo depth $-12\%$, feature frequency $-14\%$) net
+out to a single object: effective pass-through is bigger
+than the shelf-tag pass-through. Useful number, but it's a
+decomposition of one price, not three separate margins.
+
+For our purposes, the takeaway is: a manufacturer-side
+advertising response, if it exists, is a genuinely separate
+margin from anything in their paper. They look at retailer
+in-store conduct on the demand side. We look at manufacturer
+ad spend on the supply side. Different decision-maker,
+different instrument, different mechanism.
+
+\subsection*{Low pass-through is the precondition, not a
+  side angle}
+
+A manufacturer cuts ads after a tax only if its per-unit
+margin actually falls. Anything else would be a sort-of second-order thing (you advertise less because people are more elastic). With full pass-through, consumers
+eat the tax, margin is unchanged, no reason to touch the
+ads FOC. With low pass-through, the firm absorbs the tax,
+per-unit margin gets crushed, and the incentive to pull
+back advertising is large. So pass-through heterogeneity
+isn't a side angle --- it's the regime where any ad
+response shows up at all, and the response should be
+biggest exactly where pass-through is lowest.
+
+The same logic applies in the sb\_incidence sportsbook
+setting: the ZMC (zero marginal cost) regime is where
+pass-through is low, the firm bears the tax, and the
+advertising response should be biggest.
+
+Practical implication for our cross-section:
+\begin{itemize}
+  \item If we look across SSB products and find some have
+        $\sim$100\% pass-through and others much less, the
+        ad response should concentrate in the low-pass-
+        through group. Pooling across products dilutes the
+        coefficient.
+  \item For Philly specifically: published locality
+        averages are 90--103\%. If those are accurate at
+        the product level too, the margin hit is small and
+        the predicted ad response is small. The interesting
+        case is a sub-group with lower pass-through, if
+        one exists.
+  \item Boulder's 53--154\% range is huge --- some products
+        eat way more of the tax than others. That's where
+        product-level pass-through heterogeneity is most
+        visible, even if Boulder is too small for Spot TV
+        power.
+\end{itemize}
+
+\subsection*{What pass-through data exists}
+
+\citet{keller_guyt_grewal_soda_marketing_conduct} report
+locality-level rates (Philly 90--103\%, Boulder 53--154\%,
+Oakland 92\%, SF 100\%, Seattle 59--90\%). These are
+locality averages, not product-level. For the margin-
+channel test we'd want \emph{within-locality, across-
+product} pass-through heterogeneity. Possible sources:
+\begin{itemize}
+  \item Roberto et al.\ 2019 / Seiler, Tuchman, Yao 2021
+        (Philly) -- check whether they report by
+        brand/package size.
+  \item Cawley et al.\ papers -- same check.
+  \item We can also estimate it ourselves from Nielsen RMS
+        scanner data at the UPC level for the same five
+        localities.
+\end{itemize}
+
+\subsection*{Open questions}
+
+\begin{itemize}
+  \item Do any of the five localities have enough Spot TV
+        spend to detect a DMA-month ad response at
+        reasonable precision? Boulder almost certainly not.
+        Philly probably yes. SF / Oakland / Seattle unclear.
+  \item For DMAs that straddle the tax boundary (Oakland is
+        in the SF DMA; the SSB tax applies to Oakland only),
+        the DMA-level Spot TV measure averages over treated
+        and untreated retail. That's a wash for our
+        identification.
+  \item Anticipation: most of these events have $\geq$ 6
+        months between vote and implementation. Need to
+        decide whether to estimate the effect starting from
+        the vote date or the implementation date, and
+        whether to report both.
+\end{itemize}
