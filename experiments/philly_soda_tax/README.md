@@ -44,13 +44,15 @@ the event study.
 
 ### Deprecated: one-event single-DMA extractor
 
-`mercury/extract_philly_spend.py` was the original first-
-pass extractor (job 261336, May 2026). It filters at
-extraction time to `MarketCode == 104` and emits
-disaggregated occurrence rows for 2014-2018 only. It works
-but is superseded — pulling all DMAs once costs the same
-wall-time and yields counterfactuals for free. Kept for
-reference; do not run for new events.
+`mercury/_legacy/extract_philly_spend.py` was the
+original first-pass extractor (job 261336, May 2026). It
+filters at extraction time to `MarketCode == 104` and
+emits disaggregated occurrence rows for 2014-2018 only.
+Superseded by the national-panel extractor — pulling all
+DMAs once costs the same wall-time and yields
+counterfactuals for free. Parked under `_legacy/` for
+reference; do not run for new events. See
+[mercury/_legacy/README.md](mercury/_legacy/README.md).
 
 ## Analyzers
 
