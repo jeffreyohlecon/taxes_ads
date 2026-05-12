@@ -101,9 +101,23 @@ LIQUOR = Category(
 # confirm PCC subcodes and parent firms.
 BEER = Category(
     name='BEER',
-    description='Beer (placeholder).',
-    pcc_subcodes_treated=(),  # F31x family - confirm
-    notes='Run discovery to populate.',
+    description='Beer. Per Nielsen ProductCategories.tsv '
+                '(2017 ref), F310 is the single beer subcode '
+                '(ProductIDs 140 BEER, 141 BEER PDTS, 142 '
+                'BEER-NON ALCOHOLIC).',
+    pcc_subcodes_treated=('F310',),
+    pcc_subcodes_placebo=(),  # wine F320, liquor F330 are
+                              # separate categories, not
+                              # within-firm placebos
+    parent_codes_major=(),    # left empty: spaghetti plot
+                              # uses all parents; analyzer
+                              # events override per event
+    notes='F310 covers regular beer + non-alcoholic beer; '
+          'PCC-level filter cannot exclude non-alc, but it '
+          'is a tiny share of category Spot TV. Drop non-alc '
+          'brands post-extraction via Brand.tsv ProductID '
+          '142 if needed. Wine (F320) and liquor (F330) are '
+          'separate categories.',
 )
 
 WINE = Category(
@@ -115,10 +129,21 @@ WINE = Category(
 
 TOBACCO = Category(
     name='TOBACCO',
-    description='Cigarettes, cigars, smokeless tobacco '
-                '(placeholder).',
+    description='Tobacco products. Effectively NOT a Spot '
+                'TV category: cigarettes are banned from US '
+                'broadcast since Jan 2, 1971 (Public Health '
+                'Cigarette Smoking Act); smokeless tobacco '
+                'banned from broadcast since 1986. Only '
+                'feasible sub-segments are e-cigarettes / '
+                'vapes (pre-2016 TV buys by Blu, etc.) and '
+                'cigars (limited).',
     pcc_subcodes_treated=(),
-    notes='Run discovery to populate.',
+    notes='Do not treat tobacco as a stacked-event '
+          'category for Spot TV ad-response analysis. '
+          'If revisited, scope narrowly to e-cig / vape '
+          'TV spend pre-FDA-restrictions, and confirm any '
+          'taxable PCC subcode exists in AdIntel before '
+          'extracting.',
 )
 
 

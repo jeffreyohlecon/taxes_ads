@@ -156,17 +156,23 @@ a coarse proxy.
   `SSB` fully populated (F221/F222/F223 treated, F224
   placebo, top-4 parents Coca-Cola/PepsiCo/DPS/Nestle).
   `LIQUOR` partial. `BEER`/`WINE`/`TOBACCO` skeletons.
-- **Philly analysis (multiple specs)**:
-  - 18-month symmetric DiD (`did_philly_18mo.py`): Philly
-    vs Pittsburgh **DiD ≈ +$11K/month** at both cut dates
-    (Jun 2016 passage and Jan 2017 effective). Direction:
-    Philly Spot TV SSB ad spend rose more than Pittsburgh,
-    opposite of the naive cut-back hypothesis.
-  - Event study (`event_study_philly.py`): two-way FE with
-    calendar-time x-axis, ±1.96 × OLS-SE bars (NOT
-    properly clustered — flagged in plot title).
-  - Full headline + caveats in
-    [experiments/philly_soda_tax/RESULTS.md](experiments/philly_soda_tax/RESULTS.md).
+- **Canonical analyzer** is
+  `event_study_quarters_permutation.py` (one copy per
+  event, identical structure). Quarterly PPML two-way FE
+  event study with treated × event-time interactions,
+  refit pretending each non-treated DMA is treated to
+  build the placebo distribution. The 90% band on the
+  output PNG is the 5-95% percentile of placebo
+  coefficients; Fisher exact p-values are per event-time.
+  All other specs (monthly OLS, monthly PPML, DiD) have
+  been retired; do not reintroduce them.
+- **Philly headline**: null. Post-period quarterly coefs
+  sit inside the placebo band at every event-time;
+  Fisher p > 0.10 in every post quarter. Outputs in
+  [experiments/philly_soda_tax/analysis_outputs/](experiments/philly_soda_tax/analysis_outputs/).
+- **Seattle headline**: also null. Fisher p > 0.18 in
+  every post quarter. Outputs in
+  [experiments/seattle_ssb_tax/analysis_outputs/](experiments/seattle_ssb_tax/analysis_outputs/).
 - **Prior paper found post-hoc** — independent team
   (Philly vs Baltimore, Jan 2016 - Dec 2019, segmented
   linear regression) reports the **same Spot TV
@@ -183,69 +189,117 @@ a coarse proxy.
   rotation) passes → ads rise. The empirical sign of
   $dA^*/dt$ becomes the test.
 
-## Framing pivot (2026-05-11)
+## Framing pivot (2026-05-11; updated 2026-05-12)
 
-Single-event Philly is now a replication, not a
-contribution. The project pivots to:
+Single-event Philly is a replication, not a contribution.
 
-1. **Stacked SSB events** the prior paper does not cover:
-   Cook County (Aug 2017 implementation, Dec 2017
-   repeal — uniquely clean), Seattle (Jan 2018), Boulder
-   (Jul 2017), Bay Area (Berkeley 2015 / Albany CA 2017
-   / Oakland 2017 / SF 2018, all collapse to DMA 407).
-2. **Other categories**: liquor, beer, tobacco — each is
-   a new test of the sign condition in
-   [paper/model.tex](paper/model.tex). Different
-   categories likely sit on different sides of the
-   $D_{pA}$ threshold; cross-category heterogeneity is
-   itself a finding.
-3. **Theory: $D_{pA}$ is the test**. The empirical sign
-   of the ad response to a per-unit tax reads off
-   whether demand is persuasive (rotates) or separable
-   (doesn't). The contribution lives in stacking many
-   sign tests, not in any single event.
+**Headline category is BEER, not SSB.** The case for
+beer is per-event power, not event count — Butters et al
+have only ~4 usable beer events too, so the count is
+similar to SSB. What's better with beer is:
+
+- **State-level treated unit**: a state beer-tax hike
+  treats *every DMA mostly inside that state* — typically
+  3-8 DMAs per event — versus one fractional DMA for an
+  SSB city tax.
+- **Bigger nominal-rate shocks as % of retail**: state
+  beer excise hikes are typically a larger fraction of
+  the retail price than SSB local taxes.
+- **Less geographic dilution**: SSB treated cities are
+  small slices of their DMAs (Boulder ≈ 15% of Denver
+  DMA, Berkeley ≈ 3% of SF DMA), mechanically
+  attenuating any DMA-level Spot TV response. Beer
+  state-level treatment doesn't have this problem.
+
+SSB drawbacks that motivate the pivot (kept for context):
+- ~4 distinct stacked DMA-event pairs after exclusions
+  (Philly, Seattle, Boulder, Bay-Area-407; Cook County
+  out as a short-lived repeal).
+- Single-treated-DMA per event, so per-event inference is
+  weak.
+
+Project structure under the pivot:
+1. **BEER as headline**: state-level excise tax changes,
+   2010-2023. Treated unit = state, which maps to many
+   DMAs (use sb_incidence
+   `generate_market_allocations.py` patterns for the
+   state-DMA assignment).
+2. **SSB as a chapter, not the headline**: Philly +
+   Seattle done; Boulder + Bay Area as additional events
+   if time. Frame as a precise-null replication that
+   establishes the methodology.
+3. **TOBACCO is out**: cigarettes have been banned from
+   US broadcast TV since Jan 2, 1971; smokeless since
+   1986. No Spot TV signal to measure (except possibly
+   pre-2016 e-cig/vape buys — narrow scope; do not
+   prioritize). See [shared/categories.py](shared/categories.py).
+4. **Sports betting is OUT** — that's
+   [sb_incidence](https://github.com/jeffreyohlecon/sb_incidence)
+   territory, not taxes_ads. Do not propose it as a
+   category for this project.
+5. **LIQUOR / WINE / cannabis**: additional categories
+   if scope allows.
+6. **Theory: $D_{pA}$ is the test**. The sign and
+   magnitude of the ad response to a per-unit tax reads
+   off whether demand is persuasive (rotates) or
+   separable (doesn't). Stacked events give a panel of
+   sign tests.
 
 ## What's next, in priority order
 
-### 1. Permissions push for 2011-2013
+### 1. BEER pivot (the new headline)
 
-Three years of SSB data are silently missing. Worth a
-ticket to the data steward to confirm whether
-`/kilts/adintel/{2011,2012,2013}/Occurrences/SpotTV.tsv`
+a. **Discovery probe** on Mercury for BEER PCCs and top
+   parent firms (suspect F31x family; major parents are
+   ABI, MolsonCoors, Constellation, Heineken USA, Boston
+   Beer). Mirror
+   [shared/mercury/_legacy_philly_discovery/discover_soda_brands.py](shared/mercury/_legacy_philly_discovery/discover_soda_brands.py).
+b. **Tax-change history** from NIAAA APIS or Beer
+   Institute annual data: state-year excise rates,
+   identify hikes ≥ X% (cutoff TBD).
+c. **Beer panel extraction** —
+   `sbatch --array=0-13 --export=CATEGORY=BEER
+    shared/mercury/run_category_panel.sh`
+   once BEER is populated in
+   [shared/categories.py](shared/categories.py).
+d. **Spec refactor for state-level treatment**: the
+   current canonical analyzer
+   ([shared/code/event_study.py](shared/code/event_study.py))
+   assumes one treated DMA per event. State-level beer
+   events have many treated DMAs. Refactor to accept a
+   `treated_marketcodes: tuple[str, ...]` and a
+   state-DMA allocation (port the pattern from
+   `sb_incidence/code/generate_market_allocations.py`).
+
+### 2. Permissions push for 2011-2013
+
+Three years of AdIntel data are silently missing on
+SpotTV. Worth a ticket to the data steward to confirm
+whether `/kilts/adintel/{2011,2012,2013}/Occurrences/SpotTV.tsv`
 can be made readable from compute nodes (the 2010 and
 2014+ files are; the 2011-2013 ones aren't, no
-documented reason).
+documented reason). Especially relevant for beer since
+state beer-tax changes happen across the whole window
+and three missing years matters.
 
-### 2. Cook County (Aug 2017 implementation, Dec 2017 repeal)
-
-Cleanest stacked event. Repeals are rare. The national
-SSB panel already covers Chicago DMA (202). Need:
-- Event config: implementation date, repeal date, treated
-  DMA.
-- Note: Cook County's tax covered **flavored bottled
-  water** (unlike Philly), so F224 belongs in *treated*,
-  not placebo, for this event.
-- Analyzer can mostly reuse `event_study_philly.py` with
-  parameterization.
-
-### 3. Inference
-
-Wild-cluster bootstrap or permutation inference. With
-one treated DMA per event the analytical SEs are not
-credible (already flagged in plot subtitles).
-
-### 4. GRPs v2
+### 3. GRPs v2
 
 Tracked in [issue #2](https://github.com/jeffreyohlecon/taxes_ads/issues/2).
 Spend in dollars is what v1 emits; GRPs require joining
 impressions and universe files in the Mercury job. Port
 from `sb_incidence/code/data_pipeline/GRPs/`.
 
-### 5. Other categories
+### 4. Additional SSB events (lower priority)
 
-Discovery probes for LIQUOR, BEER, WINE, TOBACCO PCCs.
-Then submit `--array=0-13 --export=CATEGORY=BEER ...`
-and repeat the event-study machinery.
+Boulder, Bay Area events as bonus replications. Treat as
+a chapter, not the headline.
+
+### 5. LIQUOR / WINE / cannabis
+
+If scope allows. TOBACCO is out (broadcast ad ban; see
+Framing pivot above). Sports betting is also out — that's
+[sb_incidence](https://github.com/jeffreyohlecon/sb_incidence),
+not taxes_ads.
 
 ## Mercury operating particulars
 
@@ -280,6 +334,62 @@ and repeat the event-study machinery.
   `bash -n path/to/wrapper.sh`.
 - **Test access on the compute node** with a tiny probe
   before assuming a year's files are readable.
+
+## Nielsen Ad Intel `MarketCode` vs public DMA code
+
+These are *not* the same number system. The panel column
+`MarketCode` is Ad Intel's internal code; the public
+Nielsen DMA code (the one in the ZIP-to-DMA reference
+file) is +400 from it. Verified across all 210 DMAs in
+the panel.
+
+| Market | Public DMA | Panel `MarketCode` |
+|---|---|---|
+| Philadelphia | 504 | 104 |
+| Pittsburgh | 508 | 108 |
+| Chicago | 602 | 202 |
+| Seattle-Tacoma | 819 | 419 |
+| Portland OR | 820 | 420 |
+| San Francisco | 807 | 407 |
+
+Canonical lookup is persisted at
+[shared/reference/dma_lookup.csv](shared/reference/dma_lookup.csv)
+(columns: `MarketCode, DMACode, DMAName_public`). It is
+derived from the bulletproof source
+`/Users/jeffreyohl/Dropbox/Gambling Papers and Data/Data
+Docs/Nielsen docs/Reference_Documentation/Zip to DMA
+Mappings 2023/Zip to DMA 2023.XLS` (sheet "ZIP by DMA").
+**Always look up new events here before hardcoding a
+`MarketCode`.** Do not trust a number you got from
+context, only from the lookup table or the source XLS.
+
+## sb_incidence as the "daddy" repo for ads/DMA knowledge
+
+`sb_incidence` is the upstream project for everything we
+know about Nielsen Ad Intel, DMAs, and ad-spend pipelines.
+When stuck on data-layout, DMA-mapping, market-allocation,
+or county-population questions, check `sb_incidence` first:
+
+- `sb_incidence/code/generate_market_allocations.py` —
+  the canonical DMA → state/county allocation routine,
+  using county-population weights from Census.
+- `sb_incidence/code/ad_spend_analysis.py` — full
+  ad-spend analysis pipeline; the `MAPPING_FILE` constant
+  points to the bulletproof Zip-to-DMA reference.
+- `sb_incidence/code/nh_dma_breakdown.py`,
+  `generate_dma_border_drop_table.py`,
+  `nj_zip_county_maps.py` — examples of sub-DMA and
+  cross-border ZIP-level work using the same source.
+- `sb_incidence/code/data_pipeline/GRPs/` — the GRP join
+  pattern (impressions + universe) we'll port when we
+  graduate to GRPs.
+- `sb_incidence/philly_soda_tax/mercury/` — the original
+  one-DMA extractor pattern that `taxes_ads`
+  generalized.
+
+If a `taxes_ads` data question has any equivalent in
+`sb_incidence`, the `sb_incidence` answer is canonical.
+Do not reinvent the wheel here; port the pattern.
 
 ## Manuscript prose
 
@@ -355,6 +465,14 @@ and repeat the event-study machinery.
   or they're useless. If wild-cluster bootstrap hasn't
   been run, show coefficients without stars rather than
   fall back to analytical p-values.
+- **Never plot ±1.96 × OLS SE bars on event studies.**
+  Banned regardless of any "not properly clustered" or
+  "for visual scale only" caveat in the title — readers
+  see error bars and read significance no matter what
+  the subtitle says. Default: points/lines with no bars.
+  If a band is needed, run a permutation / wild-cluster
+  bootstrap and plot that distribution. Do not fall back
+  to OLS SEs as a visual placeholder.
 
 ## Never hardcode what should be computed
 

@@ -1,0 +1,231 @@
+% =====================================================
+% Two-channel decomposition: how a tax moves a firm's
+% optimal ad spend. The margin channel and the demand
+% rotation channel; pass-through arbitrates between them.
+% =====================================================
+
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{parskip}
+\usepackage{hyperref}
+\begin{document}
+
+\section*{Two Channels From Tax To Ads}
+
+\paragraph{Notation.} Demand for the firm's product is
+$D(p, A)$, a function of retail price $p$ and ad spend
+$A$. The own-price elasticity of demand is
+\[
+    \eta_p \;\equiv\; -\frac{\partial \ln D}{\partial \ln p},
+\]
+unitless and positive: a 1\% price increase cuts demand
+by $\eta_p$ percent. $\eta_p > 1$ is elastic, $\eta_p < 1$
+inelastic. Marginal cost to the firm is $c$, and
+\[
+    m \;\equiv\; \frac{p - c}{p}
+\]
+is the firm's per-unit profit as a fraction of the
+consumer-facing price. For CPG manufacturers, this is
+roughly the wholesale-gross-profit-per-retail-dollar.
+
+\paragraph{Setup.} A specific tax $\tau$ is levied on
+the firm per unit sold. Let $\rho \in [0,1]$ be the
+share passed through to consumers, so retail price
+rises by $\rho\tau$ and the firm's per-unit margin
+falls by $(1-\rho)\tau$. The firm chooses $A$ to
+maximize
+\[
+    \pi(A) \;=\;
+    \big(p^{\text{firm}} - c\big)\,
+    D\!\big(p^{\text{retail}},\, A\big)
+    \;-\; A,
+\]
+with $p^{\text{firm}} = p^{\text{retail}} - \tau$. The
+ad FOC is $(p^{\text{firm}}-c)\, D_A = 1$.
+
+\paragraph{Assumptions used to derive the
+decomposition below.}
+\begin{enumerate}
+    \item \textbf{Firm chooses $A$ only.} Retail price
+    is set by the retailer or market; pass-through
+    $\rho$ is exogenous. (Rules out the joint
+    Dorfman--Steiner monopolist case, where $\rho$ is
+    optimized and the margin channel is absorbed into
+    the pricing decision.)
+    \item \textbf{Separable, constant-elasticity
+    demand:} $D(p, A) = D_0(p)\, A^{\eta_A}$ with
+    $D_0(p) = p^{-\eta_p}$. Implies
+    $\partial \eta_p / \partial \ln A = 0$
+    (separability), which we relax in a footnote
+    below.
+    \item \textbf{Small $\eta_A$.} The marketing
+    literature reports ad-spend elasticities of demand
+    in $[0.05, 0.15]$, so $1/(1-\eta_A) \approx 1$ to
+    within $\sim 5\text{--}15\%$.
+\end{enumerate}
+
+\paragraph{The two channels.} Differentiating the FOC
+around the pre-tax optimum under these assumptions, and
+keeping leading-order terms in $\tau$:
+\begin{equation}\label{eq:two-channel}
+    \boxed{\;
+    \Delta \ln A^* \;\approx\;
+    \underbrace{-\,(1-\rho)\,\frac{\tau}{p-c}}_{\substack{\text{margin}\\\text{channel}}}
+    \;-\;
+    \underbrace{\rho\,\eta_p\,\frac{\tau}{p}}_{\substack{\text{demand rotation}\\\text{channel}}}\,.
+    \;}
+\end{equation}
+The margin channel: every unit of tax the firm absorbs
+cuts marginal profit per ad-acquired customer
+one-for-one, so ads fall in proportion to the
+tax-as-share-of-margin $\tau / (p-c)$.
+
+The demand rotation channel: the passed-through tax
+raises consumer price, demand falls by $\eta_p \rho
+\tau / p$, the marginal product of advertising falls
+proportionally (since $D_A = \eta_A D / A$ under
+separable demand), and the firm cuts $A$ to restore the
+FOC.
+
+Both channels are unambiguously negative: under
+separable demand at the assumed parameters, a tax cuts
+ads through both routes.
+
+\paragraph{Where the literature's $(1-\eta_p)$ form
+comes from, and why we are not using it.} Standard
+textbook Dorfman--Steiner derives $A^* = (\eta_A /
+\eta_p)\, pQ$ for a monopolist that jointly optimizes
+$p$ and $A$, implying $\Delta \ln A^* = (1-\eta_p)\Delta
+\ln p$. That result requires the firm to be repricing
+optimally, which forces $\rho$ to equal the
+profit-maximizing pass-through $\eta_p / (\eta_p - 1)$
+under constant-elasticity demand (over 100\% for
+inelastic markups) and absorbs the margin response
+into the pricing decision. Empirical pass-through for
+CPG excise taxes runs $\rho \in [0.7, 1.0]$, not the
+D--S monopolist optimum, so we use the $A$-only
+response above instead --- which keeps the margin
+channel additive at any exogenous $\rho$.
+
+\paragraph{Non-separable correction.} Relaxing
+$\partial \eta_p / \partial \ln A = 0$ adds a term
+$-\rho\,(\tau/p)\,\eta_A^{-1}\, \partial \eta_p /
+\partial \ln A$ to the demand rotation channel. The
+amplification factor $1/\eta_A \approx 20$ for $\eta_A
+= 0.05$ means that even a small elasticity-shift would
+move $\Delta \ln A^*$ substantially. This is the
+``persuasion-rotates-demand'' object we cannot identify
+from the data without a calibration target; we note it
+but treat the separable case as the working model.
+
+\paragraph{Pass-through arbitrates the two channels.}
+\eqref{eq:two-channel} has a clean interpretation as a
+function of $\rho$:
+\begin{itemize}
+    \item $\rho = 0$ (no pass-through): only the margin
+    channel operates. Response is $-\tau/(p-c) =
+    -(\tau/p)/m$, scaling with tax-as-share-of-margin.
+    First order in $\tau$, amplified by the inverse
+    margin $1/m$.
+
+    \item $\rho = 1$ (full pass-through): only the
+    demand rotation channel operates. Response is
+    $-\eta_p \tau/p$. First order in $\tau$, scaled by
+    the price elasticity of demand.
+
+    \item Intermediate $\rho$: both channels add
+    (both negative under separable demand).
+\end{itemize}
+
+\paragraph{Ratio of the two channels at their
+respective extremes.} Comparing full pass-through to no
+pass-through, holding the tax fixed:
+\[
+    \frac{|\,\text{demand rotation channel at } \rho=1\,|}
+         {|\,\text{margin channel at } \rho=0\,|}
+    \;=\;
+    \eta_p \cdot \frac{p-c}{p}
+    \;=\;
+    \eta_p \cdot m.
+\]
+For the candidate categories ($m \in [0.4, 0.5]$,
+$\eta_p \in [0.4, 0.6]$), this ratio falls in
+$[0.16, 0.30]$ --- the demand rotation channel under
+full pass-through is one sixth to one third the size of
+the margin channel under zero pass-through.
+
+\paragraph{Numbers for current candidates.} Predicted
+$\hat R$ from \eqref{eq:two-channel}:
+
+\begin{center}
+\begin{tabular}{lcccccc}
+\hline
+Setting & $\rho$ & $\tau/p$ & $m$ & $\eta_p$ &
+\multicolumn{2}{c}{$\hat R$ (signed)} \\
+& & & & & margin & dem.\ rot. \\
+\hline
+SSB Philly                       & 1.00 & 0.13 & 0.50 & 0.60 & $\;\;0.000$ & $-0.078$ \\
+Beer, state-level                & 0.85 & 0.01 & 0.50 & 0.50 & $-0.003$ & $-0.004$ \\
+Cigarettes, US state             & 0.90 & 0.20 & 0.40 & 0.40 & $-0.050$ & $-0.072$ \\
+\hline
+\end{tabular}
+\end{center}
+
+\noindent Two remarks on this table:
+
+\textbf{(i) SSB Philly predicts $-7.8\%$, not the
+near-null we observe.} The literal A-only formula
+produces an ad cut comfortably above the placebo
+noise floor ($\sigma_{\hat R} \approx 0.05$). The most
+likely reason we don't see it: ad spend is allocated
+nationally and a city-level tax affects under a
+percent of a brand's national demand, so the firm's
+national FOC barely moves and DMA-level Spot TV in
+Philly does not get reoptimized down by $\eta_p
+(\tau/p)$. Adjustment frictions reinforce this: ad
+budgets are set annually and reallocated coarsely. The
+model as written assumes ads are reoptimized at the
+same spatial scale as the tax, which is wrong for
+sub-DMA city taxes.
+
+\textbf{(ii) Cigarettes also above the noise floor.}
+Under the same model, a 20\% cigarette tax with 90\%
+pass-through predicts $\hat R \approx -12\%$. We
+cannot test this --- cigarette broadcast ads are
+banned in the US since 1971. Foreign or pre-1971
+settings would.
+
+\paragraph{Implications.}
+\begin{enumerate}
+    \item The literal model prediction for SSB Philly
+    ($-7.8\%$) exceeds the observed null. The model
+    assumes firm-level ad reoptimization at the spatial
+    scale of the tax. For sub-DMA city taxes that
+    affect under a percent of a national brand's
+    demand, that assumption fails: ads are set
+    nationally and don't reoptimize for local shocks.
+    The formula is most credible at the spatial scale
+    where the firm actually rebalances ads --- usually
+    national for CPG.
+
+    \item Margin and demand rotation channels both
+    push ads down under separable demand. The
+    structural object that could flip a sign is
+    $\partial \eta_p / \partial \ln A$. It enters the
+    demand rotation channel multiplied by $\rho\tau/p$
+    and divided by $\eta_A$, so it is amplified by
+    $\sim 20$ relative to the mechanical $-\eta_p$
+    term --- which means even a small effect could
+    matter if we had a calibration target.
+
+    \item The contribution is the decomposition
+    itself: DMA-level Spot TV ad response to a tax
+    depends on $\rho$, $m$, $\eta_p$, and the spatial
+    scale of firm reoptimization. None of these is
+    innate to the category; they reflect institutional
+    details that can be read off from industry data.
+\end{enumerate}
+
+\end{document}

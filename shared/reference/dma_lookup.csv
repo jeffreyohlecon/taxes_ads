@@ -1,0 +1,211 @@
+MarketCode,DMACode,DMAName_public
+100,500,Portland-Auburn
+101,501,New York
+102,502,Binghamton
+103,503,Macon
+104,504,Philadelphia
+105,505,Detroit
+106,506,Boston (Manchester)
+107,507,Savannah
+108,508,Pittsburgh
+109,509,Ft. Wayne
+110,510,Cleveland-Akron (Canton)
+111,511,"Washington, DC (Hagrstwn)"
+112,512,Baltimore
+113,513,Flint-Saginaw-Bay City
+114,514,Buffalo
+115,515,Cincinnati
+116,516,Erie
+117,517,Charlotte
+118,518,Greensboro-H.Point-W.Salem
+119,519,"Charleston, SC"
+120,520,Augusta-Aiken
+121,521,Providence-New Bedford
+122,522,"Columbus, GA (Opelika, AL)"
+123,523,Burlington-Plattsburgh
+124,524,Atlanta
+125,525,"Albany, GA"
+126,526,Utica
+127,527,Indianapolis
+128,528,Miami-Ft. Lauderdale
+129,529,Louisville
+130,530,Tallahassee-Thomasville
+131,531,"Tri-Cities, TN-VA"
+132,532,Albany-Schenectady-Troy
+133,533,Hartford & New Haven
+134,534,Orlando-Daytona Bch-Melbrn
+135,535,"Columbus, OH"
+136,536,Youngstown
+137,537,Bangor
+138,538,"Rochester, NY"
+139,539,Tampa-St. Pete (Sarasota)
+140,540,Traverse City-Cadillac
+141,541,Lexington
+142,542,Dayton
+143,543,Springfield-Holyoke
+144,544,Norfolk-Portsmth-Newpt Nws
+145,545,Greenville-N.Bern-Washngtn
+146,546,"Columbia, SC"
+147,547,Toledo
+148,548,West Palm Beach-Ft. Pierce
+149,549,Watertown
+150,550,Wilmington
+151,551,Lansing
+152,552,Presque Isle
+153,553,Marquette
+154,554,Wheeling-Steubenville
+155,555,Syracuse
+156,556,Richmond-Petersburg
+157,557,Knoxville
+158,558,Lima
+159,559,Bluefield-Beckley-Oak Hill
+160,560,Raleigh-Durham (Fayetvlle)
+161,561,Jacksonville
+163,563,Grand Rapids-Kalmzoo-B.Crk
+164,564,Charleston-Huntington
+165,565,Elmira (Corning)
+166,566,Harrisburg-Lncstr-Leb-York
+167,567,Greenvll-Spart-Ashevll-And
+169,569,Harrisonburg
+170,570,Myrtle Beach-Florence
+171,571,Ft. Myers-Naples
+173,573,Roanoke-Lynchburg
+174,574,Johnstown-Altoona-St Colge
+175,575,Chattanooga
+176,576,Salisbury
+177,577,Wilkes Barre-Scranton-Hztn
+181,581,Terre Haute
+182,582,"Lafayette, IN"
+183,583,Alpena
+184,584,Charlottesville
+188,588,South Bend-Elkhart
+192,592,Gainesville
+196,596,Zanesville
+197,597,Parkersburg
+198,598,Clarksburg-Weston
+200,600,Corpus Christi
+202,602,Chicago
+203,603,Joplin-Pittsburg
+204,604,Columbia-Jefferson City
+205,605,Topeka
+206,606,Dothan
+209,609,St. Louis
+210,610,Rockford
+211,611,Rochestr-Mason City-Austin
+212,612,Shreveport
+213,613,Minneapolis-St. Paul
+216,616,Kansas City
+217,617,Milwaukee
+218,618,Houston
+219,619,"Springfield, MO"
+222,622,New Orleans
+223,623,Dallas-Ft. Worth
+224,624,Sioux City
+225,625,Waco-Temple-Bryan
+226,626,Victoria
+227,627,Wichita Falls & Lawton
+228,628,Monroe-El Dorado
+230,630,Birmingham (Ann and Tusc)
+231,631,Ottumwa-Kirksville
+232,632,Paducah-Cape Girard-Harsbg
+233,633,Odessa-Midland
+234,634,Amarillo
+235,635,Austin
+236,636,Harlingen-Wslco-Brnsvl-Mca
+237,637,Cedar Rapids-Wtrlo-IWC&Dub
+238,638,St. Joseph
+239,639,"Jackson, TN"
+240,640,Memphis
+241,641,San Antonio
+242,642,"Lafayette, LA"
+243,643,Lake Charles
+244,644,"Alexandria, LA"
+247,647,Greenwood-Greenville
+248,648,Champaign&Sprngfld-Decatur
+249,649,Evansville
+250,650,Oklahoma City
+251,651,Lubbock
+252,652,Omaha
+256,656,Panama City
+257,657,Sherman-Ada
+258,658,Green Bay-Appleton
+259,659,Nashville
+261,661,San Angelo
+262,662,Abilene-Sweetwater
+269,669,Madison
+270,670,Ft. Smith-Fay-Sprngdl-Rgrs
+271,671,Tulsa
+273,673,Columbus-Tupelo-West Point
+275,675,Peoria-Bloomington
+276,676,Duluth-Superior
+278,678,Wichita-Hutchinson Plus
+279,679,Des Moines-Ames
+282,682,Davenport-R.Island-Moline
+286,686,Mobile-Pensacola (Ft Walt)
+287,687,Minot-Bsmrck-Dcknsn(Wlstn)
+291,691,Huntsville-Decatur (Flor)
+292,692,Beaumont-Port Arthur
+293,693,Little Rock-Pine Bluff
+298,698,Montgomery-Selma
+302,702,La Crosse-Eau Claire
+305,705,Wausau-Rhinelander
+309,709,Tyler-Longview(Lfkn&Ncgd)
+310,710,Hattiesburg-Laurel
+311,711,Meridian
+316,716,Baton Rouge
+317,717,Quincy-Hannibal-Keokuk
+318,718,"Jackson, MS"
+322,722,Lincoln & Hastings-Krny
+324,724,Fargo
+325,725,Sioux Falls(Mitchell)
+334,734,Jonesboro
+336,736,Bowling Green
+337,737,Mankato
+340,740,North Platte
+343,743,Anchorage
+344,744,Honolulu
+345,745,Fairbanks
+346,746,Biloxi-Gulfport
+347,747,Juneau
+349,749,Laredo
+351,751,Denver
+352,752,Colorado Springs-Pueblo
+353,753,Phoenix (Prescott)
+354,754,Butte-Bozeman
+355,755,Great Falls
+356,756,Billings
+357,757,Boise
+358,758,Idaho Fals-Pocatllo(Jcksn)
+359,759,Cheyenne-Scottsbluff
+360,760,Twin Falls
+362,762,Missoula
+364,764,Rapid City
+365,765,El Paso (Las Cruces)
+366,766,Helena
+367,767,Casper-Riverton
+370,770,Salt Lake City
+371,771,Yuma-El Centro
+373,773,Grand Junction-Montrose
+389,789,Tucson (Sierra Vista)
+390,790,Albuquerque-Santa Fe
+398,798,Glendive
+400,800,Bakersfield
+401,801,Eugene
+402,802,Eureka
+403,803,Los Angeles
+404,804,Palm Springs
+407,807,San Francisco-Oak-San Jose
+410,810,Yakima-Pasco-Rchlnd-Knnwck
+411,811,Reno
+413,813,Medford-Klamath Falls
+419,819,Seattle-Tacoma
+420,820,"Portland, OR"
+421,821,"Bend, OR"
+425,825,San Diego
+428,828,Monterey-Salinas
+439,839,Las Vegas
+455,855,Santabarbra-Sanmar-Sanluob
+462,862,Sacramnto-Stkton-Modesto
+466,866,Fresno-Visalia
+468,868,Chico-Redding
+481,881,Spokane
